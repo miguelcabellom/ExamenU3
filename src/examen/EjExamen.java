@@ -229,7 +229,7 @@ public class EjExamen {
 				}
 			}
 		}
-		System.out.println("Fila mas ocupada: "+(filaMasOcupada[1]+1));
+		System.out.println("Fila mas ocupada: "+(filaMasOcupada[1]));
 	}
 	
 
