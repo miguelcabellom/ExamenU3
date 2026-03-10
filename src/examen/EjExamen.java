@@ -75,7 +75,7 @@ public class EjExamen {
 						sc.nextLine();
 					}
 				} while (!valorCorrecto);
-				reservarGrupoEnFila(sala, fila, numeroPersonas);
+				reservarGrupoEnFila(sala, fila-1, numeroPersonas);
 			} else if (eleccion == 4) {
 				confirmarReservas(sala);
 			} else if (eleccion == 5) {
