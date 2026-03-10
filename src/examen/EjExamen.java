@@ -22,7 +22,7 @@ public class EjExamen {
 		int eleccion = 0;
 		boolean eleccionValida = false;
 		do {
-			System.out.println("menu");
+			mostrarMenu();
 			do {
 				try {
 					eleccion = sc.nextInt();
@@ -81,21 +81,25 @@ public class EjExamen {
 			} else if (eleccion == 5) {
 				cancelarReservas(sala);
 			} else if (eleccion == 6) {
-				
+				mostrarEstadisticas(sala);
 			}
 		} while (eleccion != 7);
-		
-		//pintarSala(sala);
-		//System.out.println(contarEstado(sala, LIBRE));
-		//reservarAsiento(sala, 1, 4);
-		//System.out.println(Arrays.toString(reservarGrupoEnFila(sala, 1, 7)));
-		//pintarSala(sala);
-		
-		// para introducir fila y columna -1
 		
 		sc.close();
 	}
 	
+	static void mostrarMenu() {
+		System.out.println("TEATRO");
+		System.out.println("1. Mostrar sala");
+		System.out.println("2. Reservar asiento suelto");
+		System.out.println("3. Reservar grupo en una fila");
+		System.out.println("4. Confirmar reservas");
+		System.out.println("5. Cancelar reservas");
+		System.out.println("6. Estadisticas");
+		System.out.println("7. Salir");
+	}
+			}
+
 	static void pintarSala(char[][] sala) {
 		for (int fila = -1; fila < sala.length; fila++) {
 			for (int columna = 0; columna < sala[0].length; columna++) {
@@ -205,7 +209,28 @@ public class EjExamen {
 	static void mostrarEstadisticas(char[][] sala) {
 		System.out.println("Libres: "+contarEstado(sala, LIBRE));
 		System.out.println("Reservadas: "+contarEstado(sala, RESERVADO));
-		System.out.println("Ocupadas: "+contarEstado(sala, OCUPADO));
+		int ocupadas = contarEstado(sala, OCUPADO);
+		System.out.println("Ocupadas: "+ocupadas);
+		System.out.println("Porcentaje de ocupacion: "+(ocupadas*100/60));
+		int[] filaMasOcupada = new int[2];
+		for (int fila = 0; fila < sala.length; fila++) {
+			int ocupacionesFila = 0;
+			for (int columna = 0; columna < sala[0].length; columna++) {
+				if (sala[fila][columna] == OCUPADO) {
+					ocupacionesFila++;
+				}
+			}
+			if (fila == 0) {
+				filaMasOcupada[0] = ocupacionesFila;
+				filaMasOcupada[1] = fila+1;
+			} else {
+				if (filaMasOcupada[0] < ocupacionesFila) {
+					filaMasOcupada[0] = ocupacionesFila;
+					filaMasOcupada[1] = fila+1;
+				}
+			}
+		}
+		System.out.println("Fila mas ocupada: "+(filaMasOcupada[1]+1));
 	}
 	
 
