@@ -98,7 +98,6 @@ public class EjExamen {
 		System.out.println("6. Estadisticas");
 		System.out.println("7. Salir");
 	}
-			}
 
 	static void pintarSala(char[][] sala) {
 		for (int fila = -1; fila < sala.length; fila++) {
